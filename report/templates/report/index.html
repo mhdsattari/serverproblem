@@ -1,14 +1,23 @@
 <h3><u>server list:</u></h3>
 <style>
-    td {border:1px solid blue}
+    body {
+        background-color:black;
+        color:yellow;
+    }
+    td {
+        border:1px solid blue
+    }
 </style>
 <table style="border:2px solid green">
 {% for server in servers %}
 <tr>
 <td>{{server.user}} </td>
 <td>{{server.title}} </td>
-<td>{{server.description}}</td>
-<td> View </td>
+<td>{{server.description}} </td>
+<td>{{server.get_server_type_display}} </td>
+<td>{{server.createdate}} </td>
+<td>{{server.updatedate}}</td>
+<td><a href="{% url 'server_problem' server.pk %}"> View </a></td>
 </tr>
 {% endfor %}
 </table>

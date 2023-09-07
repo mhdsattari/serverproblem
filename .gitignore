@@ -5,7 +5,10 @@
 __pycache__
 db.sqlite3
 media
+
+# Reported From Me:
 *.txt
+report/migrations/*
 # Backup files # 
 *.bak 
 

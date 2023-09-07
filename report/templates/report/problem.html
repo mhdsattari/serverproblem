@@ -1,0 +1,26 @@
+<h3><u><a href="{% url 'server_list' %}" >Back ......... </a></u></h3>
+<style>
+    body {
+        background-color:black;
+        color:yellow;
+    }
+    td {
+        border:1px solid blue
+    }
+</style>
+<table style="border:2px solid green">
+{% for problem in problems %}
+<tr>
+<td>{{problem.server.user}} </td>
+<td>{{problem.server.title}} </td>
+<td>{{problem.server.description}} </td>
+<td>{{problem.server.get_server_type_display}} </td>
+<td>{{problem.server.createdate}} </td>
+<td>{{problem.server.updatedate}}</td>
+<td>{{problem.user}}</td>
+<td>{{problem.title}}</td>
+<td>{{problem.description}}</td>
+<td>{{problem.get_problem_type_display}}</td>
+</tr>
+{% endfor %}
+</table>
