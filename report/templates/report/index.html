@@ -1,0 +1,14 @@
+<h3><u>server list:</u></h3>
+<style>
+    td {border:1px solid blue}
+</style>
+<table style="border:2px solid green">
+{% for server in servers %}
+<tr>
+<td>{{server.user}} </td>
+<td>{{server.title}} </td>
+<td>{{server.description}}</td>
+<td> View </td>
+</tr>
+{% endfor %}
+</table>
