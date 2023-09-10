@@ -18,5 +18,11 @@ class serverproblem(ListView):
     context_object_name = "problems"
     template_name = "report/problem.html"
     def get_queryset(self):
-        return Problem.objects.filter(server=self.request.resolver_match.kwargs['pk'])
+        return Problem.objects.filter(server=self.request.resolver_match.kwargs['pkk'])
+    def get_context_data(self, **kwargs: Any) -> dict[str, Any]:
+        context = super().get_context_data(**kwargs)
+        myserver = Server.objects.get(id=self.request.resolver_match.kwargs['pkk'])
+        context["server"] = f"{myserver.user} | {myserver.title} | {myserver.description} \
+        | {myserver.get_server_type_display()} | {myserver.createdate} | {myserver.updatedate}"
+        return context
     

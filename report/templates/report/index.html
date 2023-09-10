@@ -17,7 +17,7 @@
 <td>{{server.get_server_type_display}} </td>
 <td>{{server.createdate}} </td>
 <td>{{server.updatedate}}</td>
-<td><a href="{% url 'server_problem' server.pk %}"> View </a></td>
+<td><a href="{% url 'server_problem' pkk=server.pk %}"> View </a></td>
 </tr>
 {% endfor %}
 </table>

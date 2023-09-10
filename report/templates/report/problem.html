@@ -8,15 +8,17 @@
         border:1px solid blue
     }
 </style>
+{{server}}
+
+{% comment %} {{problems.server.title}} ----
+{{problem.server.description}} ----
+{{problem.server.get_server_type_display}} ----
+{{problem.server.createdate}} ----
+{{problem.server.user}} ----
+{{problem.server.updatedate}}---- {% endcomment %}
 <table style="border:2px solid green">
 {% for problem in problems %}
 <tr>
-<td>{{problem.server.user}} </td>
-<td>{{problem.server.title}} </td>
-<td>{{problem.server.description}} </td>
-<td>{{problem.server.get_server_type_display}} </td>
-<td>{{problem.server.createdate}} </td>
-<td>{{problem.server.updatedate}}</td>
 <td>{{problem.user}}</td>
 <td>{{problem.title}}</td>
 <td>{{problem.description}}</td>
