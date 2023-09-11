@@ -18,6 +18,8 @@
 <td>{{server.get_server_type_display}} </td>
 <td>{{server.createdate}} </td>
 <td>{{server.updatedate}}</td>
+{% comment %} <td>{{count}}</td> {% endcomment %}
+<td>{{server.problemcount}}</td>
 <td><a href="{% url 'server_problem' pkk=server.pk %}"> View </a></td>
 <td><a href="{% url 'server_create' %}"> Add </a></td>
 <td><a href="{% url 'server_update' pk=server.pk %}"> Edit </a></td>
