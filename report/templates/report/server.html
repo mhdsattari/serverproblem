@@ -1,1 +1,25 @@
-111111111111111111111111111
+{{user}}
+<h3><u>server:</u></h3>
+<style>
+    body {
+        background-color:black;
+        color:yellow;
+    }
+    td {
+        border:1px solid blue
+    }
+</style>{{server.problemcount}}
+<table>
+<tr>
+    <td>{{server.user}} </td>
+    <td>{{server.title}} </td>
+    <td>{{server.description}} </td>
+    <td>{{server.get_server_type_display}} </td>
+    <td>{{server.createdate}} </td>
+    <td>{{server.updatedate}}</td>
+    {% comment %} <td>{{count}}</td> {% endcomment %}
+    <td>{{problemcount}}</td>
+    <td><a href="{% url 'server_problem' pkk=server.pk %}"> View </a></td>
+    <td><a href="{% url 'server_create' %}"> Add </a></td>
+    <td><a href="{% url 'server_update' pk=server.pk %}"> Edit </a></td>
+    </tr></table>

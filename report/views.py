@@ -1,8 +1,9 @@
-from typing import Any
+from typing import Annotated, Any
+from urllib import request
 from django.db import models
 from django.db.models.query import QuerySet
 from django.forms.models import BaseModelForm
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views.generic.list import ListView
@@ -18,13 +19,12 @@ class serversearch(DetailView):
     context_object_name = 'server'
     template_name = "report/server.html"
     def get_queryset(self):
-        print ('5555555555555555555555555555555')
-        return Server.objects.get(id=self.request.resolver_match.kwargs['serverip'])
+        return super().get_queryset().filter(user = self.request.user)
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['server'] = Server.objects.get(id=self.request.resolver_match.kwargs['serverip'])
+        context['problemcount'] = Problem.objects.filter(user = self.request.user,server = self.request.resolver_match.kwargs['pk']).count()
         return context
-    
+
 class serverlist(LoginRequiredMixin,ListView):
     model = Server
     paginate_by = 50

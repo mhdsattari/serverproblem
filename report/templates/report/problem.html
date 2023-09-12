@@ -1,4 +1,4 @@
-<h3><u><a href="{% url 'server_list' %}" >Back ......... </a></u></h3>
+<h3> <button onclick="history.back()">Go Back</button></h3>
 <style>
     body {
         background-color:black;
@@ -16,6 +16,7 @@
 {{problem.server.createdate}} ----
 {{problem.server.user}} ----
 {{problem.server.updatedate}}---- {% endcomment %}
+<input type="hidden" name="next" value="{{ request.path }}">
 <table style="border:2px solid green">
 {% for problem in problems %}
 <tr>
