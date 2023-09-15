@@ -1,0 +1,7 @@
+login page:
+<form method="POST">
+{% csrf_token %}
+{{ form.as_p }}
+<input type="submit" value="login" />
+</form>
+{% comment %} <a href="{% url 'register' %}">register</a> {% endcomment %}

@@ -13,6 +13,14 @@ from django.contrib.auth.mixins import LoginRequiredMixin,PermissionRequiredMixi
 from django.contrib.auth.decorators import permission_required
 from django.db.models import Count
 from .models import Server,Problem
+from django.contrib.auth.views import LoginView
+
+
+class CustomLoginView(LoginView):
+    template_name="report/login.html"
+    fields = "__all__"
+    redirect_authenticated_user = True
+
 
 class serversearch(DetailView):
     model = Server
@@ -33,7 +41,12 @@ class serverlist(LoginRequiredMixin,ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['servers'] = Server.objects.filter(user = self.request.user).annotate(problemcount=Count('problem')).order_by('-problemcount')
+        filter_value = self.request.GET.get('filterby') or ''
+        context['filter_value'] = filter_value
+        if filter_value:
+            context['servers'] = context['servers'].filter(title__startswith=filter_value)
         return context
+    
     
 
 class problem(LoginRequiredMixin,ListView):
@@ -51,7 +64,7 @@ class problem(LoginRequiredMixin,ListView):
 
 class ServerCreate(LoginRequiredMixin,CreateView):
     model = Server
-    fields = "__all__"
+    fields = ["title","description","server_type"]
     template_name = "report/ServerCreate.html"
     success_url = reverse_lazy("server_list")
     def form_valid(self, form):
@@ -60,7 +73,7 @@ class ServerCreate(LoginRequiredMixin,CreateView):
 
 class ServerUpdate(LoginRequiredMixin,UpdateView):
     model = Server
-    fields = "__all__"
+    fields = ["title","description","server_type"]
     template_name = "report/ServerUpdate.html"
     success_url = reverse_lazy("server_list")
     def form_valid(self, form):
