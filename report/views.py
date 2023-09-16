@@ -35,6 +35,7 @@ class serversearch(DetailView):
 
 class serverlist(LoginRequiredMixin,ListView):
     model = Server
+    # permission_required = 'sd'
     paginate_by = 50
     context_object_name = "servers"
     template_name = "report/index.html"
@@ -43,6 +44,7 @@ class serverlist(LoginRequiredMixin,ListView):
         context['servers'] = Server.objects.filter(user = self.request.user).annotate(problemcount=Count('problem')).order_by('-problemcount')
         filter_value = self.request.GET.get('filterby') or ''
         context['filter_value'] = filter_value
+        context['permission'] = self.request.user.get_all_permissions()
         if filter_value:
             context['servers'] = context['servers'].filter(title__startswith=filter_value)
         return context
@@ -77,5 +79,7 @@ class ServerUpdate(LoginRequiredMixin,UpdateView):
     template_name = "report/ServerUpdate.html"
     success_url = reverse_lazy("server_list")
     def form_valid(self, form):
-        form.instance.user = self.request.user
-        return super().form_valid(form)
+        if form.instance.user==self.request.user:
+            return super().form_valid(form)
+        else:
+            return HttpResponse("does not equal!!!")

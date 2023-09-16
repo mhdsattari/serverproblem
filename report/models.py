@@ -18,6 +18,9 @@ class Server(models.Model):
         return self.title
     class Meta:
         ordering = ['server_type']
+        permissions = (
+            ('rrrrrrrrrrrrrrrrrrrrrrrrrr','bbbbbbbbbbbbbbbbbbbb'),
+        )
 
 class Problem(models.Model):
     server = models.ForeignKey(Server,on_delete=models.DO_NOTHING)
