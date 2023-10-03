@@ -1,0 +1,9 @@
+<form method="POST">
+    {% csrf_token %}
+    {{form.server}}
+    {{form.title}}
+    {{form.description}}
+    {{form.problem_type}}
+    <input type="text" name="next" value{{request.path}}>
+    <input type="submit" value="submit">
+</form>

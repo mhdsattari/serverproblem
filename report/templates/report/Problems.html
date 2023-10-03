@@ -16,14 +16,23 @@
 {{problem.server.createdate}} ----
 {{problem.server.user}} ----
 {{problem.server.updatedate}}---- {% endcomment %}
-<input type="hidden" name="next" value="{{ request.path }}">
+<form method="get">
+    <input type="text" name="problem" value="{{filter_value}}">
+    <input type="submit" value"search">
+</form>
+<a href="{% url 'problem_create'  %}"> add </a>
 <table style="border:2px solid green">
-{% for problem in problems %}
+    <th>user</th>
+    <th>title</th>
+    <th>desc</th>
+    <th>typp</th>
+{% for problem in Problems %}
 <tr>
 <td>{{problem.user}}</td>
 <td>{{problem.title}}</td>
 <td>{{problem.description}}</td>
 <td>{{problem.get_problem_type_display}}</td>
+<td><a href="{% url 'problem_update' pk=problem.pk %}"> Edit </a></td>
 </tr>
 {% endfor %}
 </table>

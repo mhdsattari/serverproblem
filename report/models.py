@@ -19,7 +19,8 @@ class Server(models.Model):
     class Meta:
         ordering = ['server_type']
         permissions = (
-            ('rrrrrrrrrrrrrrrrrrrrrrrrrr','bbbbbbbbbbbbbbbbbbbb'),
+            ('ServerAdmin','Server_Admin'),
+            ('Serverread','Server_Read'),
         )
 
 class Problem(models.Model):

@@ -4,10 +4,9 @@
 {% else %}
     <a href="{% url 'login' %}">Login</a>
 {% endif %}
-
+{{ user.user_permissions }}
 <h3><u>server list:</u></h3>
 <a href="{% url 'server_create' %}"> Add </a>
-{{permission}}
 <style>
     body {
         background-color:black;
@@ -19,11 +18,11 @@
 </style>
 
 <form method="get">
-    <input type="text" name="filterby" value="{{filter_value}}">
+    <input type="text" name="server" value="{{filter_value}}">
     <input type="submit" value"search">
 </form>
 <table style="border:2px solid green">
-{% for server in servers %}
+{% for server in Servers %}
 <tr>
 <td>{{server.user}} </td>
 <td>{{server.title}} </td>
@@ -33,10 +32,10 @@
 <td>{{server.updatedate}}</td>
 {% comment %} <td>{{count}}</td> {% endcomment %}
 <td>{{server.problemcount}}</td>
-<td><a href="{% url 'server_problem' pkk=server.pk %}"> View </a></td>
+<td><a href="{% url 'problem_list' pkk=server.pk %}"> View </a></td>
 <td><a href="{% url 'server_update' pk=server.pk %}"> Edit </a></td>
 </tr>
 {% endfor %}
-</table    >
+</table>
 
 
