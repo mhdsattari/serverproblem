@@ -1,0 +1,49 @@
+<!--   navbar   -->
+<nav class="navbar  navbar-expand-lg bg-body-tertiary">
+    <div class="container">
+      <div class="navbar-brand">
+        <div class="nav-item d-flex">
+        {% if request.user.is_authenticated %}
+       <div class="nav-link mx-1"> {{request.user}} خوش آمدید | </div>
+      <a class="nav-link mx-1" href="{% url 'logout' %}">خروج</a>
+        {% else %}
+      <a class="nav-link" href="{% url 'login' %}">ورود</a>
+        {% endif %}
+        </div>
+      </div>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Link</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Dropdown
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="#">Action</a></li>
+              <li><a class="dropdown-item" href="#">Another action</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" href="#">Something else here</a></li>
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link disabled" aria-disabled="true">Disabled</a>
+          </li>
+        </ul>
+
+
+        <form ethod="get" class="d-flex" role="search">
+          <input type="text" name="server" value="{{filter_value}}" class="form-control me-2"  placeholder="آدرس را وارد کنید" aria-label="Search">
+          <button class="btn btn-outline-success" type="submit">جستجو</button>
+        </form>
+      </div>
+    </div>
+  </nav>
+  <!--   navbar   -->
