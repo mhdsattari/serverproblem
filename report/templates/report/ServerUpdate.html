@@ -1,7 +1,25 @@
-<form method="POST">
-    {% csrf_token %}
-    {{form.title}}
-    {{form.description}}
-    {{form.server_type}}
-    <input type="submit" value="submit">
-</form>
+{% extends 'report/base.html' %}
+{% block content %}
+  <div class="container">
+    <form method="POST">
+      {% csrf_token %}
+      <div class="form-group">
+        <label for="title"></label>
+        {{ form.title }}
+      </div>
+      <div class="form-group">
+        <label for="description"></label>
+        {{ form.description }}
+      </div>
+      <label for="description"></label>
+      {{ form.server_type }}
+      <label></label>
+      <button type="submit" class="container btn btn-primary">بروزرسانی</button>
+    </form>
+  </div>
+  <script>
+    document.getElementById('id_title').className = 'form-control'
+    document.getElementById('id_description').className = 'form-control'
+    document.getElementById('id_server_type').className = 'form-select'
+  </script>
+{% endblock %}

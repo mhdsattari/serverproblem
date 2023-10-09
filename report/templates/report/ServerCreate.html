@@ -1,7 +1,23 @@
-<form method="POST">
-    {% csrf_token %}
-    {{form.title}}
-    {{form.description}}
-    {{form.server_type}}
-    <input type="submit" value="submit">
-</form>
+{% extends 'report/base.html' %}
+{% block content %}
+  <div class="container">
+    <form method="POST">
+      {% csrf_token %}
+      <div class="form-group">
+        <label for="title"></label>
+        <input name="title" class="form-control" id="title" placeholder="IP سرور" />
+      </div>
+      <div class="form-group">
+        <label for="description"></label>
+        <input name="description" class="form-control" id="description" placeholder="توضیحات" />
+      </div>
+      <label for="description"></label>
+      {{ form.server_type }}
+      <label></label>
+      <button type="submit" class="container btn btn-primary">ثبت</button>
+    </form>
+  </div>
+  <script>
+    document.getElementById('id_server_type').className = 'form-select'
+  </script>
+{% endblock %}
