@@ -33,6 +33,7 @@ class ServerList(LoginRequiredMixin,ListView):
         context['Servers'] = Server.objects.filter(user = self.request.user).annotate(problemcount=Count('problem')).order_by('-problemcount')
         filter_value = self.request.GET.get('server') or ''
         context['filter_value'] = filter_value
+        context['filterpage'] = 'server'
         if filter_value:
             context['Servers'] = context['Servers'].filter(title__startswith=filter_value)
         return context
@@ -85,6 +86,7 @@ class ProblemList(LoginRequiredMixin,ListView):
             context['Problems'] = context['Problems'].filter(title__startswith=filter_value)
         print(context['Problems'])
         context['filter_value'] = filter_value
+        context['filterpage'] = 'problems'
         myserver = Server.objects.get(id=self.request.resolver_match.kwargs['pkk'])
         context["server"] = f"{myserver.user} | {myserver.title} | {myserver.description} \
         | {myserver.get_server_type_display()} | {myserver.createdate} | {myserver.updatedate}"
